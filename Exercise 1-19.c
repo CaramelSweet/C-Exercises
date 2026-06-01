@@ -4,11 +4,11 @@
 int get_line(char line[], int maxLine);
 void reverseString(char string[], int lineLength);
 
-int main (void) {
+int main(void) {
     int lineLength;
     char line[MAXLENGTH];
 
-    while ((lineLength = get_line(line, MAXLENGTH)) != -1) {
+    while ((lineLength = get_line(line, MAXLENGTH)) != - 1) {
         reverseString(line, lineLength);
         printf("%s\n", line);
     }
@@ -17,7 +17,7 @@ int main (void) {
 }
 
 int get_line(char line[], int maxLine) {
-    int c;
+    int c = 0;
     int i = 0;
     while (i < maxLine - 1 && (c = getchar()) != EOF && c != '\n') {
         line[i] = c;
