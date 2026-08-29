@@ -1,21 +1,21 @@
 #include <stdio.h>
-#define TABSIZE 4;
+#define TABSIZE         4
+#define MAXLINELENGTH   1000
+
+int getTheLine(char line[], int lineLength);
+void detab(char line[], int lineLength, int tabSize);
 
 int main(void) {
 
+}
 
-    char stuff[50];
-    int c;
-    int i = 0;
-    while ((c = getchar()) != EOF) {
-        stuff[i] = c;
-        ++i;
-    }
+int getTheLine(char line[], int lineLength) {
 
-    stuff[i] = '\0';
 
-    printf("The string is %s", stuff);
-    
+}
+
+void detab(char line[], int lineLength, int tabSize) {
+
 }
 // get line function
 
