@@ -8,7 +8,7 @@ int main(void) {
     int lineLength;
     char line[MAXLENGTH];
 
-    while ((lineLength = get_line(line, MAXLENGTH)) != - 1) {
+    while ((lineLength = get_line(line, MAXLENGTH)) != -1) {
         reverseString(line, lineLength);
         printf("%s\n", line);
     }
