@@ -16,6 +16,10 @@ int main(void) {
 }
 
 int getTheLine(char line[], int lineLength) {
+    if (lineLength<= 0) {
+        return -1;
+    }
+
     int c = 0;
     int i = 0;
 
@@ -40,9 +44,14 @@ void detab(char line[], int lineLength) {
         if (line[i] == '\t') {
             int numSpaces = TABSIZE - (i % TABSIZE);    // find number of spaces to insert
 
-            for (int j = lineLength; j >= i; j--){      // copy array over numspaces
+            if (lineLength + numSpaces - 1 >=MAXLINELENGTH) { // prevent overlow
+                numSpaces = MAXLINELENGTH - lineLength;
+            }
+
+            for (int j = lineLength; j > i; j--){      // copy array over numspaces
                 line[j + numSpaces - 1] = line[j];
             }
+            
             
             for (int j = 0; j < numSpaces; j++) {       // insert spaces
                 line[i + j] = ' ';
