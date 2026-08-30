@@ -36,10 +36,8 @@ int getTheLine(char line[], int lineLength) {
 }
 
 void detab(char line[], int lineLength) {
-    printf("%d\n", lineLength);
     for (int i = 0; i < lineLength; i++) {             // loop through array
         if (line[i] == '\t') {
-
             int numSpaces = TABSIZE - (i % TABSIZE);    // find number of spaces to insert
 
             for (int j = lineLength; j >= i; j--){      // copy array over numspaces
