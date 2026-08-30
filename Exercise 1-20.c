@@ -37,12 +37,11 @@ int getTheLine(char line[], int lineLength) {
 }
 
 void detab(char line[], int lineLength) {
+    int i = 0;
 
-    for (int i = 0; i < lineLength; i++) {
-        if (line[i] == '\t') {
-            
-            line[i] = 'T';
-        }
+    while (line[i] != '\0') {
+
+        i++;
     }
 
 }
