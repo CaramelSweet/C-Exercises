@@ -1,5 +1,5 @@
 #include <stdio.h>
-#define TABSIZE         4
+#define TABSIZE         8
 #define MAXLINELENGTH   1000
 
 int getTheLine(char line[], int lineLength);
@@ -11,9 +11,8 @@ int main(void) {
 
     while ((lineLength = getTheLine(line, MAXLINELENGTH)) != -1) {
         detab(line, lineLength);
-        //printf("%s\n", line);
+        printf("%s\n", line);
     }
-
 }
 
 int getTheLine(char line[], int lineLength) {
@@ -37,21 +36,22 @@ int getTheLine(char line[], int lineLength) {
 }
 
 void detab(char line[], int lineLength) {
-    int i = 0;
+    printf("%d\n", lineLength);
+    for (int i = 0; i < lineLength; i++) {             // loop through array
+        if (line[i] == '\t') {
 
-    while (line[i] != '\0') {
+            int numSpaces = TABSIZE - (i % TABSIZE);    // find number of spaces to insert
 
-        i++;
+            for (int j = lineLength; j >= i; j--){      // copy array over numspaces
+                line[j + numSpaces - 1] = line[j];
+            }
+            
+            for (int j = 0; j < numSpaces; j++) {       // insert spaces
+                line[i + j] = ' ';
+            }
+            
+            lineLength += (numSpaces - 1);             // update info
+            i += (numSpaces - 1); 
+        }
     }
-
 }
-// get line function
-
-//process tabs function,
-
-// get a line
-// analysize line tabs and replace tabs with spaces to set column
-
-// number of spaces = (tabsize)
-
-// insert space until it hits a column.
