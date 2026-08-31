@@ -49,7 +49,7 @@ void entab(char line[], int lineLength) {
         
         if (line[i] == ' ') {
             spaceCount++;
-        } else {
+        } else if (line[i] != '\t') {
             spaceCount = 0;
         }
 
@@ -61,9 +61,11 @@ void entab(char line[], int lineLength) {
             shifted += TABSIZE - 1;
 
             i = (i - spaceCount);
+
+            spaceCount = 0;
         } else if (((i + shifted + 1) % TABSIZE == 0) && (spaceCount > 0)) {
 
-            line[i - spaceCount + 1] = 't';
+            line[i - spaceCount + 1] = '\t';
             
             // move array over left (spaceCount - 1)
             for (int j = i - spaceCount + 2; j <= lineLength - spaceCount + 1; j++) {
