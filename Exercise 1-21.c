@@ -1,9 +1,8 @@
 #include <stdio.h>
-#define TABSIZE         8
+#define TABSIZE         4
 #define MAXLINELENGTH   1000
 
 int getTheLine(char line[], int lineLength);
-void detab(char line[], int lineLength);
 void entab(char line[], int lineLength);
 
 int main(void) {
@@ -14,10 +13,12 @@ int main(void) {
         entab(line, lineLength);
         printf("%s\n", line);
     }
+
+    return 0;
 }
 
 int getTheLine(char line[], int lineLength) {
-    if (lineLength<= 0) {
+    if (lineLength <= 0) {
         return -1;
     }
 
@@ -43,52 +44,39 @@ int getTheLine(char line[], int lineLength) {
 void entab(char line[], int lineLength) {
 
     int spaceCount = 0;
+    int shifted = 0;
     for (int i = 0; i < lineLength; i++) {
         
         if (line[i] == ' ') {
             spaceCount++;
-        }
-
-        if ((i % TABSIZE == 0) && (spaceCount > 0)) {
-            // replace spaces with tabs
-            line[i - spaceCount] = '\t';
-            // move array over left (spaceCount - 1)
-            for (int j = i - spaceCount - 1; j < lineLength; j++) {
-                line[j] = line[j + 1];
-            }
-            line[lineLength - spaceCount - 1 ] = '\0';
-
-            lineLength += (spaceCount - 1); // update info
+        } else {
             spaceCount = 0;
         }
-    }
-}
-// aa  aaaa
-// 01234567
-void detab(char line[], int lineLength) {
-    for (int i = 0; i < lineLength; i++) {             // loop through array
+
         if (line[i] == '\t') {
-            int numSpaces = TABSIZE - (i % TABSIZE);    // find number of spaces to insert
-
-            if (lineLength + numSpaces - 1 >= MAXLINELENGTH) { // prevent overlow
-                numSpaces = MAXLINELENGTH - lineLength;
+            for (int j = i - spaceCount; j <= lineLength - spaceCount; j++) {
+                line[j] = line[j + spaceCount];
             }
 
-            for (int j = lineLength; j > i; j--){      // copy array over numspaces
-                line[j + numSpaces - 1] = line[j];
+            shifted += TABSIZE - 1;
+
+            i = (i - spaceCount);
+        } else if (((i + shifted + 1) % TABSIZE == 0) && (spaceCount > 0)) {
+
+            line[i - spaceCount + 1] = 't';
+            
+            // move array over left (spaceCount - 1)
+            for (int j = i - spaceCount + 2; j <= lineLength - spaceCount + 1; j++) {
+                line[j] = line[j + spaceCount - 1];
             }
-            
-            
-            for (int j = 0; j < numSpaces; j++) {       // insert spaces
-                line[i + j] = ' ';
-            }
-            
-            lineLength += (numSpaces - 1);             // update info
-            i += (numSpaces - 1); 
+
+            i = (i - spaceCount + 1);
+
+            lineLength = (lineLength - spaceCount + 1); // update info
+
+            shifted += spaceCount - 1;
+
+            spaceCount = 0; 
         }
     }
 }
-
-// find space
-// count sequential spaces
-// if sequential spaces crosses hits boundary/column replaces spaces with tab.
