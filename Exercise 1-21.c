@@ -1,6 +1,6 @@
 #include <stdio.h>
-#define TABSIZE         4
-#define MAXLINELENGTH   1000
+#define TABSIZE 4
+#define MAXLINELENGTH 1000
 
 int getTheLine(char line[], int lineLength);
 void entab(char line[], int lineLength);
@@ -31,7 +31,7 @@ int getTheLine(char line[], int lineLength) {
     }
 
     if (lineLength > 0) {
-        line[i] = '\0';     
+        line[i] = '\0';
     }
 
     if (c == EOF && i == 0) {
@@ -42,11 +42,9 @@ int getTheLine(char line[], int lineLength) {
 }
 
 void entab(char line[], int lineLength) {
-
     int spaceCount = 0;
     int shifted = 0;
     for (int i = 0; i < lineLength; i++) {
-        
         if (line[i] == ' ') {
             spaceCount++;
         } else if (line[i] != '\t') {
@@ -64,9 +62,8 @@ void entab(char line[], int lineLength) {
 
             spaceCount = 0;
         } else if (((i + shifted + 1) % TABSIZE == 0) && (spaceCount > 0)) {
-
             line[i - spaceCount + 1] = '\t';
-            
+
             // move array over left (spaceCount - 1)
             for (int j = i - spaceCount + 2; j <= lineLength - spaceCount + 1; j++) {
                 line[j] = line[j + spaceCount - 1];
@@ -74,11 +71,11 @@ void entab(char line[], int lineLength) {
 
             i = (i - spaceCount + 1);
 
-            lineLength = (lineLength - spaceCount + 1); // update info
+            lineLength = (lineLength - spaceCount + 1);  // update info
 
             shifted += spaceCount - 1;
 
-            spaceCount = 0; 
+            spaceCount = 0;
         }
     }
 }

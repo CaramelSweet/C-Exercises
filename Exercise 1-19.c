@@ -1,5 +1,5 @@
 #include <stdio.h>
-#define MAXLENGTH   1000
+#define MAXLENGTH 1000
 
 int get_line(char line[], int maxLine);
 void reverseString(char string[], int lineLength);
@@ -12,7 +12,7 @@ int main(void) {
         reverseString(line, lineLength);
         printf("%s\n", line);
     }
-    
+
     return 0;
 }
 
@@ -25,7 +25,7 @@ int get_line(char line[], int maxLine) {
     }
 
     if (maxLine > 0) {
-        line[i] = '\0';     
+        line[i] = '\0';
     }
 
     if (c == EOF && i == 0) {

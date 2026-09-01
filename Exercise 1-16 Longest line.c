@@ -10,7 +10,7 @@ int main(void) {
 
     char line[MAXLINE];
     char longest[MAXLINE];
-    
+
     max = 0;
     while ((len = get_line(line, MAXLINE)) > 0) {
         if (len > max) {
@@ -19,8 +19,8 @@ int main(void) {
         }
     }
 
-    if (max > 0)
-        printf("%s%d\n", longest, max);
+    if (max > 0) printf("%s%d\n", longest, max);
+
     return 0;
 }
 
@@ -37,11 +37,11 @@ int get_line(char s[], int lim) {
 
     if (c == '\n') {
         if (i < lim - 1) {
-        s[i] = c;
+            s[i] = c;
         }
         ++i;
     }
-    
+
     if (i < lim) {
         s[i] = '\0';
     } else {

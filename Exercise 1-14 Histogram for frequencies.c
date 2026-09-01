@@ -12,7 +12,7 @@ int main(void) {
 
     for (int i = 0; i < MAX_LEN; ++i) {
         if (charCount[i] > 0) {
-            if (i == 10 ){
+            if (i == 10) {
                 printf("NL|");
             } else {
                 printf(" %c|", i);
@@ -23,5 +23,6 @@ int main(void) {
             putchar('\n');
         }
     }
+
     return 0;
 }

@@ -5,7 +5,6 @@ int main(void) {
     while ((c = getchar()) != EOF) {
         if (c == ' ') {
             while ((c = getchar()) == ' ') {
-                
             }
             putchar(' ');
             if (c == EOF) {
@@ -14,7 +13,6 @@ int main(void) {
         }
         putchar(c);
     }
-
 
     return 0;
 }

@@ -1,6 +1,6 @@
 #include <stdio.h>
-#define TABSIZE         8
-#define MAXLINELENGTH   1000
+#define TABSIZE 8
+#define MAXLINELENGTH 1000
 
 int getTheLine(char line[], int lineLength);
 void detab(char line[], int lineLength);
@@ -13,10 +13,12 @@ int main(void) {
         detab(line, lineLength);
         printf("%s\n", line);
     }
+
+    return 0;
 }
 
 int getTheLine(char line[], int lineLength) {
-    if (lineLength<= 0) {
+    if (lineLength <= 0) {
         return -1;
     }
 
@@ -29,7 +31,7 @@ int getTheLine(char line[], int lineLength) {
     }
 
     if (lineLength > 0) {
-        line[i] = '\0';     
+        line[i] = '\0';
     }
 
     if (c == EOF && i == 0) {
@@ -40,25 +42,24 @@ int getTheLine(char line[], int lineLength) {
 }
 
 void detab(char line[], int lineLength) {
-    for (int i = 0; i < lineLength; i++) {             // loop through array
+    for (int i = 0; i < lineLength; i++) {  // loop through array
         if (line[i] == '\t') {
-            int numSpaces = TABSIZE - (i % TABSIZE);    // find number of spaces to insert
+            int numSpaces = TABSIZE - (i % TABSIZE);  // find number of spaces to insert
 
-            if (lineLength + numSpaces - 1 >=MAXLINELENGTH) { // prevent overlow
+            if (lineLength + numSpaces - 1 >= MAXLINELENGTH) {  // prevent overlow
                 numSpaces = MAXLINELENGTH - lineLength;
             }
 
-            for (int j = lineLength; j > i; j--){      // copy array over numspaces
+            for (int j = lineLength; j > i; j--) {  // copy array over numspaces
                 line[j + numSpaces - 1] = line[j];
             }
-            
-            
-            for (int j = 0; j < numSpaces; j++) {       // insert spaces
+
+            for (int j = 0; j < numSpaces; j++) {  // insert spaces
                 line[i + j] = ' ';
             }
-            
-            lineLength += (numSpaces - 1);             // update info
-            i += (numSpaces - 1); 
+
+            lineLength += (numSpaces - 1);  // update info
+            i += (numSpaces - 1);
         }
     }
 }

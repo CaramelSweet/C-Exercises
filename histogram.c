@@ -1,5 +1,5 @@
 #include <stdio.h>
-#define IN  1
+#define IN 1
 #define OUT 0
 #define MAX_LEN 25
 
@@ -49,14 +49,14 @@ int main(void) {
 
     printf("  \xE2\x94\x94");
     for (int i = 0; i < MAX_LEN; ++i) {
-        printf("\xE2\x94\x80"); 
+        printf("\xE2\x94\x80");
     }
     printf("\xE2\x94\x98");
     printf("\n");
 
     printf("   ");
     for (int i = 1; i <= MAX_LEN; ++i) {
-        if ( i < 10) {
+        if (i < 10) {
             putchar('0');
         } else {
             printf("%d", i / 10);
@@ -68,5 +68,6 @@ int main(void) {
         printf("%d", i % 10);
     }
     putchar('\n');
+
     return 0;
 }
