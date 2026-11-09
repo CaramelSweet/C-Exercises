@@ -5,6 +5,8 @@ int main(void) {
 	char a[] = "0x3A7";	 // hex input
 
 	printf("%d", htoi(a));
+
+	return 0;
 }
 
 int htoi(char s[]) {
